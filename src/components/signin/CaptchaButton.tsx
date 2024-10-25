@@ -4,13 +4,13 @@ import captcha from "../../../public/Logo.png";
 
 const captchaButton = () => {
   return (
-    <div className="px-8  border-2 border-[#E9ECEF] rounded-sm flex items-center justify-start gap-[7.5rem]">
+    <div className="sm:px-8  border-2 border-[#E9ECEF] rounded-sm flex items-center justify-start xl:gap-[7.5rem] lg-[5.3rem] gap-16">
       <div className="flex items-center justify-center gap-5">
         <input
           type="checkbox"
           id="checkbox"
           name="checkbox"
-          className="w-8 h-8 rounded-lg"
+          className="w-6 h-6 rounded-lg"
         />
         <label className="text-black">I am human</label>
       </div>
