@@ -48,7 +48,7 @@ const Side_nav = () => {
         />
       </div>
       <div className="flex items-center justify-between w-3/12 mt-4 ">
-      <p className="text-black  font-medium text-sm">Recent Chats</p>
+        <p className="text-black  font-medium text-sm">Recent Chats</p>
         <Image
           src="/icons/arrow-right.png"
           alt="logo"
