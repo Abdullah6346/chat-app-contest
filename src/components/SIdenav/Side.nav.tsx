@@ -53,7 +53,7 @@ const Side_nav: React.FC = () => {
         <Image
           src="/icons/logo.png"
           alt="logo"
-          className="w-5"
+          className="w-5 cursor-pointer"
           width={20}
           height={20}
         />
@@ -78,14 +78,14 @@ const Side_nav: React.FC = () => {
         <Image
           src="/icons/search-normal.png"
           alt="search"
-          className="w-5"
+          className="w-5 cursor-pointer"
           width={20}
           height={20}
         />
         <Image
           src="/icons/setting-4.png"
           alt="settings"
-          className="w-5"
+          className="w-5 cursor-pointer"
           width={20}
           height={20}
         />
@@ -95,7 +95,7 @@ const Side_nav: React.FC = () => {
         <Image
           src="/icons/arrow-right.png"
           alt="expand"
-          className="w-5"
+          className="w-5 cursor-pointer"
           width={20}
           height={20}
         />
