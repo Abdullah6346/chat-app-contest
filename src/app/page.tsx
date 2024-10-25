@@ -1,4 +1,4 @@
-import Side_nav from "@/components/Side.nav";
+import Side_nav from "@/components/SIdenav/Side.nav";
 
 export default function Home() {
   return (
