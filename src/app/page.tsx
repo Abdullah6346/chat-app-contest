@@ -3,6 +3,7 @@ import Side_nav from "@/components/SIdenav/Side.nav";
 
 export default function Home() {
   return (
+
     <>
       <div className="flex ">
         <Side_nav />
