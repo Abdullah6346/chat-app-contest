@@ -51,7 +51,7 @@ const Side_nav: React.FC = () => {
 
   return (
     <div>
-      <div className="md:hidden p-4 ">
+      <div className="md:hidden p-2  ">
         <IconButton onClick={() => setIsDrawerOpen(true)}>
           <MenuIcon />
         </IconButton>
