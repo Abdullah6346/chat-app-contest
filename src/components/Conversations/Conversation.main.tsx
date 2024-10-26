@@ -4,16 +4,16 @@ import Conversation_input from "./Conversation.input";
 
 const Conversation_main = () => {
   return (
-    <div className="p-6 w-[80%] min-h-screen flex flex-col">
+    <div className="p-2 sm:p-6 w-[80%] min-h-screen flex flex-col">
       <div className="flex items-center justify-between border-b border-gray-300 pb-4">
         <Image
           src="/icons/maximize-3.png"
           alt="expand"
           width={24}
           height={24}
-          className="cursor-pointer transform transition-transform duration-200 hover:scale-110"
+          className="cursor-pointer max-sm:hidden transform transition-transform duration-200 hover:scale-110"
         />
-        <p className="text-black font-medium text-2xl">
+        <p className="text-black font-medium md:text-2xl text-base">
           Welcome back, John Doe
         </p>
 

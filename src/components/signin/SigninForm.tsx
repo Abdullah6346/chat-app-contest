@@ -26,13 +26,7 @@ const Form = () => {
             placeholder="Phone number or email"
             className="px-4 py-2 rounded-lg border-2 border-[#E9ECEF]"
           />
-          <input
-            name="email"
-            id="email"
-            type="email"
-            placeholder="email"
-            className="px-4 py-2 rounded-lg border-2 border-[#E9ECEF]"
-          />
+        
           <input
             name="password"
             id="password"
