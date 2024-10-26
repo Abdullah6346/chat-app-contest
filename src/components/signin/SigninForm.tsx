@@ -1,5 +1,6 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import SigninButton from "./SigninButton";
 import CaptchaButton from "@/components/signin/CaptchaButton";
 import OrBorder from "./OrBorder";
@@ -9,16 +10,19 @@ import Facebook from "./Facebook";
 import Signup from "./Signup";
 
 const Form = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prev) => !prev);
+  };
+
   return (
     <div className="px-4 sm:px-12 py-6">
-      <div className=" text-2xl sm:text-3xl text-[#212529] text-center">
+      <div className="text-2xl sm:text-3xl text-[#212529] text-center">
         <h1>Sign in to your account</h1>
       </div>
-      <form
-        className="flex flex-col justify-between items-start
-        gap-4  "
-      >
-        <div className="flex flex-col gap-4 lg:px-16 justify-center py-8 w-[100%] ">
+      <form className="flex flex-col justify-between items-start gap-4">
+        <div className="flex flex-col gap-4 lg:px-16 justify-center py-8 w-[100%]">
           <input
             name="tel"
             id="tel"
@@ -26,14 +30,23 @@ const Form = () => {
             placeholder="Phone number or email"
             className="px-4 py-2 rounded-lg border-2 border-[#E9ECEF]"
           />
-        
-          <input
-            name="password"
-            id="password"
-            type="password"
-            placeholder="password"
-            className="px-4 py-2 rounded-lg border-2 border-[#E9ECEF]"
-          />
+
+          <div className="relative">
+            <input
+              name="password"
+              id="password"
+              type={passwordVisible ? "text" : "password"} // Toggle password visibility
+              placeholder="Password"
+              className="px-4 py-2 rounded-lg border-2 border-[#E9ECEF] w-full"
+            />
+            <span
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-3 cursor-pointer" // Positioning for the eye icon
+            >
+              {passwordVisible ? "👁️" : "👁️‍🗨️"}{" "}
+              {/* Change the eye icon based on visibility */}
+            </span>
+          </div>
         </div>
         <div className="text-blue-600 text-xl w-[100%] lg:px-16 text-end">
           <Link href="/">Forgot password?</Link>
@@ -41,7 +54,7 @@ const Form = () => {
         <div className="xl:w-[75%] lg:w-[70%] md:w-[100%] w-full lg:ml-14 xl:ml-0">
           <SigninButton />
         </div>
-        <div className=" xl:ml-16 lg:ml-14">
+        <div className="xl:ml-16 lg:ml-14">
           <CaptchaButton />
         </div>
         <div className="xl:w-[75%] lg:w-[70%] md:w-[100%] w-full xl:ml-16 lg:ml-14">
