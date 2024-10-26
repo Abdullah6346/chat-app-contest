@@ -4,7 +4,7 @@ import Conversation_input from "./Conversation.input";
 
 const Conversation_main = () => {
   return (
-    <div className="p-2 sm:p-6 w-[80%] min-h-screen flex flex-col">
+    <div className="p-2 sm:p-6 w-[80%] min-h-[80vh] flex flex-col">
       <div className="flex items-center justify-between border-b border-gray-300 pb-4">
         <Image
           src="/icons/maximize-3.png"
