@@ -36,7 +36,7 @@ const Conversation_main = () => {
         />
       </div>
 
-      <Conversation_input />
+      {/* <Conversation_input /> */}
     </div>
   );
 };
