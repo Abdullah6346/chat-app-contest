@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Conversation_input from "./Conversation.input";
+// import Conversation_input from "./Conversation.input";
 
 const Conversation_main = () => {
   return (
