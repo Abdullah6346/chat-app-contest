@@ -1,11 +1,20 @@
+"use client";
 import Image from "next/image";
 import React from "react";
-// import Conversation_input from "./Conversation.input";
+import Conversation_input from "./Conversation.input";
+import Side_nav from "../SIdenav/Side.nav";
 
-const Conversation_main = () => {
+const Conversation_main = ({
+  mobile,
+  desktop,
+}: {
+  mobile: boolean;
+  desktop: boolean;
+}) => {
   return (
-    <div className="p-2 sm:p-6 w-[80%] min-h-[80vh] flex flex-col">
-      <div className="flex items-center justify-between border-b border-gray-300 pb-4">
+    <div className="p-2 sm:p-6 w-[100%] min-h-[80vh] flex flex-col">
+      <div className="flex items-center justify-between border-b border-gray-300 ">
+        {!desktop && <Side_nav />}
         <Image
           src="/icons/maximize-3.png"
           alt="expand"
@@ -36,7 +45,7 @@ const Conversation_main = () => {
         />
       </div>
 
-      {/* <Conversation_input /> */}
+      {!mobile && <Conversation_input />}
     </div>
   );
 };
