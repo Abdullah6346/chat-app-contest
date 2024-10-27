@@ -1,12 +1,12 @@
 "use client";
-import { Button, Drawer, IconButton } from "@mui/material";
+import { Button, Drawer, IconButton, TextField } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close"; // Import CloseIcon
+import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import React, { useState } from "react";
 import Prefrences_nav from "./prefrences.nav";
 import Support_nav from "./support.nav";
-import Plan_setting from "./Plan.serring";
+import Plan_setting from "./Plan.setting";
 
 interface Chat {
   id: number;
@@ -16,8 +16,9 @@ interface Chat {
 
 const Side_nav: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const chats: Chat[] = [
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [chats, setChats] = useState<Chat[]>([
     { id: 1, name: "What is AI assistant?", time: "Today" },
     { id: 2, name: "Best laptop brands and features", time: "Today" },
     { id: 3, name: "How many days are there in a year?", time: "Yesterday" },
@@ -40,18 +41,34 @@ const Side_nav: React.FC = () => {
       name: "Lorem ipsum dolor sit amet, consectetur.",
       time: "Last week",
     },
-  ];
+  ]);
 
-  // Group chats by time
-  const groupedChats = chats.reduce((acc: Record<string, Chat[]>, chat) => {
-    if (!acc[chat.time]) acc[chat.time] = [];
-    acc[chat.time].push(chat);
-    return acc;
-  }, {});
+  // Function to handle creating a new chat
+  const handleNewChat = () => {
+    const newChat: Chat = {
+      id: chats.length + 1,
+      name: `New Chat ${chats.length + 1}`,
+      time: "Today",
+    };
+    setChats([newChat, ...chats]);
+  };
+
+  const filteredChats = chats.filter((chat) =>
+    chat.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const groupedChats = filteredChats.reduce(
+    (acc: Record<string, Chat[]>, chat) => {
+      if (!acc[chat.time]) acc[chat.time] = [];
+      acc[chat.time].push(chat);
+      return acc;
+    },
+    {}
+  );
 
   return (
     <div>
-      <div className="md:hidden p-2  ">
+      <div className="md:hidden p-2">
         <IconButton onClick={() => setIsDrawerOpen(true)}>
           <MenuIcon />
         </IconButton>
@@ -65,8 +82,6 @@ const Side_nav: React.FC = () => {
         className="md:hidden"
       >
         <div className="w-64 px-4 py-5 relative">
-          {/* Close Button */}
-
           <div className="flex items-center gap-4">
             <Image
               src="/icons/logo.png"
@@ -76,13 +91,22 @@ const Side_nav: React.FC = () => {
               height={20}
             />
             <p className="text-black font-medium text-2xl">Logo Here</p>
-            <IconButton 
-              onClick={() => setIsDrawerOpen(false)}
-             
-            >
+            <IconButton onClick={() => setIsDrawerOpen(false)}>
               <CloseIcon />
             </IconButton>
           </div>
+
+          {/* Search Input - Only shown when isSearchVisible is true */}
+          {isSearchVisible && (
+            <TextField
+              fullWidth
+              variant="outlined"
+              placeholder="Search chats..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              sx={{ marginTop: "1rem" }}
+            />
+          )}
 
           <div className="mt-4">
             <Button
@@ -95,6 +119,7 @@ const Side_nav: React.FC = () => {
                 margin: "1rem 0",
               }}
               variant="outlined"
+              onClick={handleNewChat}
             >
               New Chat +
             </Button>
@@ -107,6 +132,7 @@ const Side_nav: React.FC = () => {
               className="w-5 cursor-pointer"
               width={20}
               height={20}
+              onClick={() => setIsSearchVisible(!isSearchVisible)} // Toggle visibility
             />
             <Image
               src="/icons/setting-4.png"
@@ -147,7 +173,7 @@ const Side_nav: React.FC = () => {
       </Drawer>
 
       {/* Full Sidebar - Visible on Desktop */}
-      <div className="hidden md:block px-4 py-5">
+      <div className="hidden md:block px-4 py-5 w-64">
         <div className="flex items-center gap-4">
           <Image
             src="/icons/logo.png"
@@ -158,6 +184,18 @@ const Side_nav: React.FC = () => {
           />
           <p className="text-black font-medium text-2xl">Logo Here</p>
         </div>
+
+        {/* Search Input - Only shown when isSearchVisible is true */}
+        {isSearchVisible && (
+          <TextField
+            fullWidth
+            variant="outlined"
+            placeholder="Search chats..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            sx={{ marginTop: "1rem" }}
+          />
+        )}
 
         <div className="mt-4">
           <Button
@@ -170,6 +208,7 @@ const Side_nav: React.FC = () => {
               margin: "1rem 0",
             }}
             variant="outlined"
+            onClick={handleNewChat}
           >
             New Chat +
           </Button>
@@ -182,6 +221,7 @@ const Side_nav: React.FC = () => {
             className="w-5 cursor-pointer"
             width={20}
             height={20}
+            onClick={() => setIsSearchVisible(!isSearchVisible)} // Toggle visibility
           />
           <Image
             src="/icons/setting-4.png"
